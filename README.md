@@ -1,24 +1,41 @@
 ImageRemote
 ===========
 
-Classes permettant de downloader des images depuis un serveur (+ cache)
+Classes for downloading remote images.
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"idItem";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        [[NSBundle mainBundle] loadNibNamed:@"CellItem" owner:self options:nil];
-        cell = _cellItem;
-        self.cellItem = nil;
-    }
-    // Configure the cell...
-    Item * item = [_arrayItems objectAtIndex:indexPath.row];
-    UILabel * label = (UILabel *)[cell viewWithTag:2];
-    label.text = ((Item *)[_arrayItems objectAtIndex:indexPath.row]).titre;
+By downloading this classes, you can eas download an image from a server with one line of code:
     
-    UIImageView * img = (UIImageView *)[cell viewWithTag:1];
-    [img setImageFromUrl:item.url placeholderImage:nil withIndicator:YES doesCacheImage:NO];
+    UIImageView * img = //allocation;
+    [img setImageFromUrl:@"url" placeholderImage:[UIImage imageNamed:@"placeholder.png"] withIndicator:YES doesCacheImage:NO];
+
+Features :
+
+All the downloaded images are cached in memory.
+
+All cached images are freed in low memory condition.
+
+Possibility to save the image on the disk.
+
+Easy to use in tableViews for remote images :
     
-    return cell;
+    
+    
+    
+        - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+        {
+            static NSString *CellIdentifier = @"idItem";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                [[NSBundle mainBundle] loadNibNamed:@"CellItem" owner:self options:nil];
+                cell = _cellItem;
+                self.cellItem = nil;
+            }
+            
+            // Configure the cell...
+            Item * item = [_arrayItems objectAtIndex:indexPath.row];
+            UIImageView * img = (UIImageView *)[cell viewWithTag:1];
+            //dowload the image
+            [img setImageFromUrl:item.url placeholderImage:[UIImage imageNamed:@"placeholder.png"] withIndicator:YES doesCacheImage:NO];
+    
+            return cell;
 }
