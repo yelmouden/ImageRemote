@@ -3,7 +3,7 @@ ImageRemote
 
 Classes for downloading remote images.
 
-By downloading this classes, you can eas download an image from a server with one line of code:
+By downloading this classes, you can easily download an image from a server with one line of code:
     
     UIImageView * img = //allocation;
     [img setImageFromUrl:@"url" placeholderImage:[UIImage imageNamed:@"placeholder.png"] withIndicator:YES doesCacheImage:NO];
