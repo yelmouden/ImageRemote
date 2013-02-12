@@ -1,7 +1,7 @@
 ImageRemote
 ===========
 
-Classes for downloading remote images ( Available in iOS 4.3 and later.).
+Categories for downloading remote images ( Available in iOS 4.3 and later.).
 
 By downloading this classes, you can easily download an image from a server :
     
